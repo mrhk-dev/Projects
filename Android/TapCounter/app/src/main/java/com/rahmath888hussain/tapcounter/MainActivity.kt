@@ -21,7 +21,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.transition.Visibility
 
 class MainActivity : AppCompatActivity() {
     //    constants
@@ -42,6 +41,7 @@ class MainActivity : AppCompatActivity() {
     //    activity level variables
     private var counterValue: Int = 0
     private lateinit var prefs: SharedPrefs
+    private lateinit var dbHelper: MyAppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -113,6 +113,8 @@ class MainActivity : AppCompatActivity() {
         titleTextView = findViewById(R.id.tv_taskbarTitle)
         editTextTitle = findViewById(R.id.et_taskbarTitle)
         setTitle = findViewById(R.id.img_setTitle)
+
+        dbHelper = MyAppDatabase(this)
     }
 
     private fun flipAnimation(onAnimationEnd: () -> Unit) {
@@ -180,6 +182,11 @@ class MainActivity : AppCompatActivity() {
                 true
             }
 
+            R.id.menu_addNewCounter -> {
+                addNewCounter()
+                true
+            }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -188,8 +195,6 @@ class MainActivity : AppCompatActivity() {
         val nightMode = when (item) {
             "System Default" -> {
                 val isNightModeOn = AppCompatDelegate.getDefaultNightMode()
-                Toast.makeText(this, "System Default Theme Int: $isNightModeOn", Toast.LENGTH_SHORT)
-                    .show()
                 if (isNightModeOn == AppCompatDelegate.MODE_NIGHT_YES) {
                     AppCompatDelegate.MODE_NIGHT_YES
                 } else {
@@ -203,5 +208,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         AppCompatDelegate.setDefaultNightMode(nightMode)
+    }
+
+    private fun addNewCounter(){
+        val insertResult = dbHelper.insertCounter(
+            CountersListActivity.CountModelClass(counterName = "TapCounter"
+        , counterValue = 0, setDefault = true))
+        Toast.makeText(this, "User inserted with ID: $insertResult", Toast.LENGTH_SHORT).show()
     }
 }

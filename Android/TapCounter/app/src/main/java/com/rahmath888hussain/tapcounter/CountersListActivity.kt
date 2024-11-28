@@ -6,14 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
-import androidx.annotation.StyleRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class CountersListActivity : AppCompatActivity() {
-    private lateinit var recViewCounters: RecyclerView
+    private lateinit var dbHelper: MyAppDatabase
+    private lateinit var counterRecView:RecyclerView
+    private lateinit var counterAdapter: CounterRecViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,12 +27,22 @@ class CountersListActivity : AppCompatActivity() {
             insets
         }
 
+        dbHelper = MyAppDatabase(this)
+        counterRecView = findViewById(R.id.recView_Counters)
+        counterRecView.layoutManager = LinearLayoutManager(this)
+        counterAdapter = CounterRecViewAdapter()
+
+        val counters = dbHelper.getAllCounters()
+
+        counterRecView.adapter = counterAdapter
+        counterAdapter.setCounterList(counters)
     }
 
-    class CounterListView : RecyclerView.Adapter<CounterListView.ViewAdapter>() {
-        private val counterList = mutableListOf<countModelClass>()
+    class CounterRecViewAdapter() : RecyclerView.Adapter<CounterRecViewAdapter.ViewAdapter>() {
+        private val counterList = mutableListOf<CountModelClass>()
 
-        fun setCounterList(list: List<countModelClass>) {
+
+        fun setCounterList(list: List<CountModelClass>) {
             counterList.clear()
             counterList.addAll(list)
             notifyDataSetChanged()
@@ -40,7 +52,7 @@ class CountersListActivity : AppCompatActivity() {
             private val counterNameTextView = itemView.findViewById<TextView>(R.id.CounterName)
             private val counterValueTextView = itemView.findViewById<TextView>(R.id.CounterValue)
 
-            fun bind(counterModel: countModelClass) {
+            fun bind(counterModel: CountModelClass) {
                 counterNameTextView.text = counterModel.counterName
                 counterValueTextView.text = counterModel.counterValue.toString()
             }
@@ -61,7 +73,7 @@ class CountersListActivity : AppCompatActivity() {
         }
     }
 
-    class countModelClass(
+    class CountModelClass(
         var counterId: Int = 0,
         var counterName: String = "TapCounter",
         var counterValue: Int = 0,

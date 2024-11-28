@@ -13,6 +13,7 @@
     <string name="theme">Theme</string>
     <string name="counters">Counters</string>
     <string name="done">Done</string>
+    <string name="add_new_counter">Add New Counter</string>
 
     <string-array name="themeOptionsArray">
         <item>System Default</item>
