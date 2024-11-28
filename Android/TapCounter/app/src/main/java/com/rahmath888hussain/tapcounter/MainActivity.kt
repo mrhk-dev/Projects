@@ -58,12 +58,13 @@ class MainActivity : AppCompatActivity() {
 //            counter_value = 0
 //            prefs.saveInt(COUNTER_VALUE_NAME, counter_value)
 
-            flipAnimation {
-                counter_value = 0
-                prefs.saveInt(COUNTER_VALUE_NAME, counter_value)
-                counterTextView.text = counter_value.toString()
+            if (counter_value != 0) {
+                flipAnimation {
+                    counter_value = 0
+                    prefs.saveInt(COUNTER_VALUE_NAME, counter_value)
+                    counterTextView.text = counter_value.toString()
+                }
             }
-
         }
     }
 
