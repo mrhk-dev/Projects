@@ -92,11 +92,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         setTitle.setOnClickListener {
-            if (editTextTitle.text.toString() != "" || editTextTitle.text.toString() != " ")
+            if (editTextTitle.text.toString().isNotEmpty() || editTextTitle.text.toString()
+                    .isNotBlank()
+            ) {
                 prefs.saveString(counterTitle, editTextTitle.text.toString())
-
+                titleTextView.text = editTextTitle.text.toString()
+                editTextTitle.setText("")
+            }
             editTextTitle.visibility = View.GONE
-            titleTextView.setText(editTextTitle.text.toString())
             titleTextView.visibility = View.VISIBLE
             setTitle.visibility = View.GONE
             menu.findItem(R.id.editTitle).setVisible(true)
@@ -154,7 +157,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (prefs.getString(selectedTheme) != "Dark") {
             item.icon?.setTint(Color.WHITE)
-        }else{
+        } else {
             item.icon?.setTint(Color.BLACK)
         }
 
@@ -187,13 +190,15 @@ class MainActivity : AppCompatActivity() {
         val nightMode = when (item) {
             "System Default" -> {
                 val isNightModeOn = AppCompatDelegate.getDefaultNightMode()
-                Toast.makeText(this, "System Default Theme Int: $isNightModeOn", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "System Default Theme Int: $isNightModeOn", Toast.LENGTH_SHORT)
+                    .show()
                 if (isNightModeOn == AppCompatDelegate.MODE_NIGHT_YES) {
                     AppCompatDelegate.MODE_NIGHT_YES
                 } else {
                     AppCompatDelegate.MODE_NIGHT_NO
                 }
             }
+
             "Light" -> AppCompatDelegate.MODE_NIGHT_NO
             "Dark" -> AppCompatDelegate.MODE_NIGHT_YES
             else -> return

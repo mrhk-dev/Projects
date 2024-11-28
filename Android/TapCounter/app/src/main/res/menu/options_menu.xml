@@ -17,5 +17,5 @@
         android:id="@+id/menu_showCounters"
         android:icon="@drawable/vec_list_counters"
         android:title="@string/counters"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 </menu>
