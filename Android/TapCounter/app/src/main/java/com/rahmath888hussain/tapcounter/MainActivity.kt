@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
@@ -43,7 +44,6 @@ class MainActivity : AppCompatActivity() {
     //    activity level variables
     private var counterValue: Int = 0
     private lateinit var prefs: SharedPrefs
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -170,6 +170,12 @@ class MainActivity : AppCompatActivity() {
                 editTextTitle.visibility = View.VISIBLE
                 item.isVisible = false
                 setTitle.visibility = View.VISIBLE
+                true
+            }
+
+            R.id.menu_showCounters -> {
+                val intent = Intent(this, CountersListActivity::class.java)
+                startActivity(intent)
                 true
             }
 

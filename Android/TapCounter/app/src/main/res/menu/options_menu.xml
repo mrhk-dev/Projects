@@ -13,4 +13,9 @@
         android:icon="@drawable/edit_title"
         android:title="@string/settings"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_showCounters"
+        android:icon="@drawable/vec_list_counters"
+        android:title="@string/counters"
+        app:showAsAction="ifRoom" />
 </menu>
