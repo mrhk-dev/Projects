@@ -115,6 +115,9 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.settings -> {
                 Toast.makeText(this, "Settings Selected", Toast.LENGTH_SHORT).show()
+
+                val settingsBottomSheet = SettingsFragment()
+                settingsBottomSheet.show(supportFragmentManager, settingsBottomSheet.tag)
                 true
             }
             else -> super.onOptionsItemSelected(item)
