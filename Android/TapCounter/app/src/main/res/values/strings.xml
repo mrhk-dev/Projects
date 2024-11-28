@@ -6,5 +6,6 @@
     <string name="btn_increment">Increase</string>
     <string name="counter_value">0</string>
     <string name="btn_reset">RESET</string>
+    <string name="settings">Settings</string>
 
 </resources>
