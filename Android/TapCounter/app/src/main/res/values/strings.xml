@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TapCounter</string>
+
+<!--    Button names -->
+<!--    main Activity -->
+    <string name="btn_add">Add</string>
+    <string name="counter_value">0</string>
+
 </resources>
