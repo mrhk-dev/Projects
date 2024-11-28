@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,6 +18,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -26,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     //    constants
     private val counterValueName = "counterValue"
     private val counterTitle = "Tap Counter"
+    private val selectedTheme = "SELECTED_THEME"
 
     //    widgets declaration
     private lateinit var addBt: Button
@@ -34,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
     private lateinit var titleTextView: TextView
     private lateinit var editTextTitle: EditText
-private lateinit var setTitle : ImageView
+    private lateinit var setTitle: ImageView
     private lateinit var menu: Menu
 
     //    activity level variables
@@ -57,6 +60,7 @@ private lateinit var setTitle : ImageView
         setSupportActionBar(toolbar)
 
         init()
+        prefs.getString(selectedTheme, "System Default")?.let { setAppTheme(it) }
 
         titleTextView.text = prefs.getString(counterTitle, defaultValue = "Tap Counter")
         counterValue = prefs.getInt(counterValueName)
@@ -87,7 +91,7 @@ private lateinit var setTitle : ImageView
             }
         }
 
-        setTitle.setOnClickListener{
+        setTitle.setOnClickListener {
             if (editTextTitle.text.toString() != "" || editTextTitle.text.toString() != " ")
                 prefs.saveString(counterTitle, editTextTitle.text.toString())
 
@@ -97,7 +101,6 @@ private lateinit var setTitle : ImageView
             setTitle.visibility = View.GONE
             menu.findItem(R.id.editTitle).setVisible(true)
         }
-
     }
 
     private fun init() {
@@ -149,10 +152,14 @@ private lateinit var setTitle : ImageView
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (prefs.getString(selectedTheme) != "Dark") {
+            item.icon?.setTint(Color.WHITE)
+        }else{
+            item.icon?.setTint(Color.BLACK)
+        }
+
         return when (item.itemId) {
             R.id.settings -> {
-                Toast.makeText(this, "Settings Selected", Toast.LENGTH_SHORT).show()
-
                 val settingsBottomSheet = SettingsFragment()
                 settingsBottomSheet.show(supportFragmentManager, settingsBottomSheet.tag)
                 true
@@ -165,7 +172,27 @@ private lateinit var setTitle : ImageView
                 setTitle.visibility = View.VISIBLE
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun setAppTheme(item: String) {
+        val nightMode = when (item) {
+            "System Default" -> {
+                val isNightModeOn = AppCompatDelegate.getDefaultNightMode()
+                Toast.makeText(this, "System Default Theme Int: $isNightModeOn", Toast.LENGTH_SHORT).show()
+                if (isNightModeOn == AppCompatDelegate.MODE_NIGHT_YES) {
+                    AppCompatDelegate.MODE_NIGHT_YES
+                } else {
+                    AppCompatDelegate.MODE_NIGHT_NO
+                }
+            }
+            "Light" -> AppCompatDelegate.MODE_NIGHT_NO
+            "Dark" -> AppCompatDelegate.MODE_NIGHT_YES
+            else -> return
+        }
+
+        AppCompatDelegate.setDefaultNightMode(nightMode)
     }
 }

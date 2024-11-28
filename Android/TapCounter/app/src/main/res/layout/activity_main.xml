@@ -12,7 +12,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="@drawable/setting_title_backgroung"
         app:titleTextColor="@android:color/white">
 
         <LinearLayout
@@ -27,7 +27,7 @@
                 android:gravity="center_vertical"
                 android:visibility="visible"
                 android:text="@string/app_name"
-                android:textColor="@color/white"
+                android:textColor="@color/colorAccent"
                 android:layout_weight="1"
                 android:textSize="28sp" />
 
@@ -72,6 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            style="@style/buttonStyle"
             android:text="@string/btn_increment" />
 
         <Button
@@ -79,6 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            style="@style/buttonStyle"
             android:text="@string/btn_reset" />
 
     </LinearLayout>

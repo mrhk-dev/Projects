@@ -13,6 +13,4 @@
         android:icon="@drawable/edit_title"
         android:title="@string/settings"
         app:showAsAction="ifRoom" />
-
-
 </menu>
