@@ -43,6 +43,7 @@
             <ImageView
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
+                android:contentDescription="@string/done"
                 android:src="@drawable/enter"
                 android:id="@+id/img_setTitle"
                 android:visibility="gone"
