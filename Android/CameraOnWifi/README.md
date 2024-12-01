@@ -1,10 +1,15 @@
-## Projects 
-### create an android project in kotlin(not in jetpack compose) to use current mobile camera as cctv camera over wifi
-#### Features:
-* Option to use back or front camera
-* option to change camera resolution
-* option to run in background
-* Should be able to run from Android 6.0 to 15
-* Add display on top to preview over other browser pages
-* Option to record on device or to nas
-* provide an option to upload data to nas
+## Application Changes based on version
+
+| This Application is built for using mobile camera as security device
+
+## v:1.0
+    * Camera Access
+
+## v:2.0
+    * Creating a camera access
+
+## v:3.0
+    * Customization of access over wifi
+
+## v:4.0
+    * Background Service
