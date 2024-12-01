@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TapCounter" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryDay</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkDay</item>
+        <item name="colorAccent">@color/colorAccentDay</item>
+    </style>
+
+    <style name="Theme.TapCounter" parent="Base.Theme.TapCounter" />
+
+    <style name="textView1" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="buttonStyle" parent="android:Widget.Button">
+        <item name="android:background">@drawable/btn_style</item>
+        <item name="android:textColor">@color/colorAccentNight</item>
+    </style>
+</resources>
