@@ -62,4 +62,9 @@ class DatesListRecViewAdapter(
         fun onItemClick(view: View, position: Int)
         fun onLongItemClick(view: View, position: Int)
     }
+
+    fun updateList(dataList:List<DatesModelClass>){
+        dataModelList = dataList
+        notifyDataSetChanged()
+    }
 }
