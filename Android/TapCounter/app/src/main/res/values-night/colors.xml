@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#E63636</color>
+    <color name="colorPrimaryDark">#992B2B</color>
+    <color name="colorAccent">#000000</color>
+
+    <color name="editTextTextColorDay">#AF1E1E</color>
+    <color name="editTextTextColorNight">#1244C7</color>
+
+    <!--    button default colors-->
+    <color name="buttonBackground">#E63636</color>
+    <color name="buttonTextColor">#ffffff</color>
+
+
+    <!--    Options Menu color-->
+    <color name="threeDotsColor">#000000</color>
+
+</resources>

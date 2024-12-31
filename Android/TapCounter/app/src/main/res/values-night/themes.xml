@@ -1,0 +1,29 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TapCounter" parent="Theme.Material3.DayNight">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="actionOverflowButtonStyle">@style/ThreeDotsColor</item>
+
+    </style>
+
+    <style name="buttonStyle" parent="android:Widget.Button">
+        <item name="android:background">@drawable/button_default_stle</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="NoActionBar" parent="Base.Theme.TapCounter">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+
+    <style name="ThreeDotsColor" parent="Widget.AppCompat.Light.ActionButton.Overflow">
+        <item name="tint">@color/threeDotsColor</item>
+    </style>
+</resources>
