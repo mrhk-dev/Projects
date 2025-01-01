@@ -11,4 +11,9 @@ public class Home {
         return "Hello Rahmath";
     }
 
+    @RequestMapping(value = "/home")
+    public String home() {
+        return "Home Page";
+    }
+
 }
