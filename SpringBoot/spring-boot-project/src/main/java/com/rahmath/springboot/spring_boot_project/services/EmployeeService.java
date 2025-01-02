@@ -1,13 +1,13 @@
 package com.rahmath.springboot.spring_boot_project.services;
 
 import com.rahmath.springboot.spring_boot_project.dao.EmployeeDao;
+import com.rahmath.springboot.spring_boot_project.exception.IdNotFoundException;
 import com.rahmath.springboot.spring_boot_project.models.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.beans.Customizer;
 import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @Component
@@ -43,7 +43,11 @@ public class EmployeeService {
 
 //        return employeeList.stream().filter(c -> Objects.equals(c.getEmpId(), id)).findFirst().get();
 
-        return dao.findById(String.valueOf(id)).get();
+        Optional<Employee> emp = dao.findById(String.valueOf(id));
+        if (!emp.isPresent())
+            throw new IdNotFoundException("Employee Id not found");
+
+        return emp.get();
     }
 
     public Employee updateEmployee(int id, Employee emp) {
